@@ -1,10 +1,14 @@
 import { useForm } from "react-hook-form";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
 
 const SignIn = () => {
-    const { register, handleSubmit, watch } = useForm()
-    const onSubmit = data => {
-        console.log(data);
+    const { signInUser } = useAuth()
+    const navigate = useNavigate()
+    const { register, handleSubmit } = useForm()
+    const onSubmit = async data => {
+        await signInUser(data.email, data.password)
+        navigate('/')
     }
     return (
         <div>

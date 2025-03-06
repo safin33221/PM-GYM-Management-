@@ -1,7 +1,15 @@
-import { Link, NavLink } from "react-router";
+import { Link, NavLink, useNavigate } from "react-router";
+import useAuth from "../Hooks/useAuth";
 
 
 const Navbar = () => {
+    const { user, signoutUser } = useAuth()
+    const navigate = useNavigate()
+    const handleLogout = async () => {
+        await signoutUser()
+        navigate('/')
+
+    }
     const links = <>
         <li><NavLink to='/'>Home</NavLink></li>
         <li><NavLink>All Tainer</NavLink></li>
@@ -32,7 +40,29 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={`/sign-In`} ><a className="btn">Get Start</a></Link>
+                {
+                    user ? <div className="dropdown dropdown-end">
+                        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
+                            <div className="w-10 rounded-full">
+                                <img
+                                    alt="Tailwind CSS Navbar component"
+                                    src={user?.photoURL} />
+                            </div>
+                        </div>
+                        <ul
+                            tabIndex={0}
+                            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-1 mt-3 w-52 p-2 shadow">
+                            <li>
+                                <a className="justify-between">
+                                    Profile
+                                    <span className="badge">New</span>
+                                </a>
+                            </li>
+                            <li><a>Settings</a></li>
+                            <li onClick={handleLogout}><a>Logout</a></li>
+                        </ul>
+                    </div> : <Link to={`/sign-In`} ><a className="btn">Get Start</a></Link>
+                }
             </div>
         </div>
     );

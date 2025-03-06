@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form";
+import { Link } from "react-router";
 
 const SignIn = () => {
     const { register, handleSubmit, watch } = useForm()
@@ -10,6 +11,7 @@ const SignIn = () => {
             <div className="max-w-xl rounded-xl shadow-2xl mx-auto  w-full flex justify-center items-center">
 
                 <form onSubmit={handleSubmit(onSubmit)} className="m-10  space-y-2 w-full">
+                    <h1 className="text-2xl font-bold text-center">Sign Up Now</h1>
 
                     <label className="floating-label ">
                         <span>Your Email</span>
@@ -23,7 +25,9 @@ const SignIn = () => {
 
                         <input type="submit" value='Sing In' className="btn btn-md" />
                     </label>
+                    <div className="border-t"></div>
 
+                    <p>Don't Have an account? <Link to={`/sign-Up`} className="text-blue-600 underline">Sing UP</Link></p>
                 </form>
             </div>
         </div>

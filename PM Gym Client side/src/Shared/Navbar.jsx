@@ -58,7 +58,7 @@ const Navbar = () => {
                                     <span className="badge">New</span>
                                 </a>
                             </li>
-                            <li><a>Settings</a></li>
+                            <li><NavLink to={`/apply-trainer`}><a>Apply Trainer</a></NavLink></li>
                             <li onClick={handleLogout}><a>Logout</a></li>
                         </ul>
                     </div> : <Link to={`/sign-In`} ><a className="btn">Get Start</a></Link>
